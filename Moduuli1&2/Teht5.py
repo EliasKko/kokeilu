@@ -9,5 +9,5 @@ Kilo = L + N + I
 whole_number, decimal_part = divmod(Kilo, 1)
 whole_number = int(Kilo)
 G = decimal_part * 1000
-grammat = int(G)
-print("kilogrammoja = ", whole_number,"grammoja = ", grammat )
+gramma = int(G)
+print("kiloja: ", whole_number, "grammoja: ", gramma)
