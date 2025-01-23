@@ -1,5 +1,3 @@
-from selectors import SelectSelector
-
 kuha = int(input("kerro kuhan pituus senttimetreinä: "))
 if kuha >= 37:
     print("Kuha on tarpeeksi iso.")
