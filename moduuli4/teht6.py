@@ -2,8 +2,7 @@ import random
 N = int(input("Anna arvausten määrä: "))
 A = 0
 B = 0
-list1 =[]
-list2 = []
+
 for i in range(N):
     x = random.randint(-10, 10)
     y = random.randint(-10, 10)
