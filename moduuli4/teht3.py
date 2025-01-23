@@ -11,5 +11,5 @@ while  a!="":
 
 isoinluku = max(list)
 pieninluku = min(list)
-print("iosin luku: ", isoinluku, "pienin luku: ", pieninluku)
+print("iosin luku on: ", isoinluku, "pienin luku on: ", pieninluku)
 
