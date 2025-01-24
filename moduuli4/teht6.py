@@ -2,7 +2,6 @@ import random
 N = int(input("Anna arvausten määrä: "))
 A = 0
 B = 0
-
 while N > 0:
     x = random.uniform(-1, 1)
     y = random.uniform(-1, 1)
