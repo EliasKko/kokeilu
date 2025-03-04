@@ -1,4 +1,6 @@
 import random
+
+
 randomLuku = random.randint(1,4)
 def tehava(randomLuku):
     if randomLuku == 1:
