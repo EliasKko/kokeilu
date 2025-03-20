@@ -8,7 +8,7 @@ class Auto:
 
     def kiihtyy(self):
         a = int(input("anna kiihdytys: "))
-        self.kiihdytys=a
+        self.kiihdytys = a
         if self.kiihdytys != 0 and self.nopeus < 142:
             self.nopeus = self.nopeus + self.kiihdytys
             if self.nopeus < 0:
@@ -23,4 +23,5 @@ class Auto:
             print("Matkaa on kulunut: ", self.kuljettu_matka, "km")
 
 auto = Auto()
+auto.kiihtyy()
 auto.kulje()
