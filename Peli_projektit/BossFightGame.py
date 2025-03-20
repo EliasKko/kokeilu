@@ -88,8 +88,8 @@ class knife(object):
         self.vel = vel
         self.vel1 = vel1
         self.vel2 = 7
-        self.vel3 = 3
-        self.vel4 = -3
+        self.vel3 = 3.5
+        self.vel4 = -3.5
         self.kuva = pygame.image.load('knife.png')
         self.kuva = pygame.transform.scale(self.kuva, (300, 150))
         self.kuva = pygame.transform.rotate(self.kuva, 130)
@@ -127,16 +127,16 @@ class knife(object):
         #self.x = 300
         if self.alas:
             soun7.play()
-            self.vel += 1
+            self.vel += 7
             self.y += self.vel
             if self.y >= 200:
                 self.ylös = True
                 self.alas = False
-        if self.ylös and self.y >= 50:
+        if self.ylös and self.y > -60:
             soun7.play()
             self.vel1 -= 1
             self.y += self.vel1
-            if self.y <= 50:
+            if self.y < -60:
                 self.ylös = False
                 self.sivuun = True
         if self.sivuun and self.x <= 400:
@@ -144,6 +144,7 @@ class knife(object):
             if self.x >= 400:
                 self.sivuun = False
                 self.alas = True
+
 
     def cut3(self):
         if self.oikealle:
@@ -177,8 +178,8 @@ class knife(object):
         if self.olemassa:
             soun7.play()
             self.kuva = pygame.transform.rotate(self.kuva, 90)
-            self.rect = pygame.Rect(self.x + 140, self.y + 80, 35, 160)
-            self.rec1t = pygame.Rect(self.x1 + 140, self.y1 + 80, 35, 160)
+            self.rect = pygame.Rect(self.x + 140, self.y + 100, 35, 50)
+            self.rec1t = pygame.Rect(self.x1 + 140, self.y1 + 100, 35, 50)
             #pygame.draw.rect(bossfight, (255, 0, 0), (self.rect), 2)
             #pygame.draw.rect(bossfight, (255, 0, 0), (self.rec1t), 2)
             bossfight.blit(self.kuva, (self.x, self.y))
@@ -242,22 +243,26 @@ class gasterblaster(object):
         self.counter = 0
         self.vel = 0.08
         self.vel1 = vel1
-        self.rect = pygame.Rect(self.x + 17, self.y + 20, 10, 1000)
+        self.vel2 = 20
         self.ole = True
+        self.var = 1
+        self.rect = pygame.Rect(self.x + 17, self.y + 20, 10, self.var)
 
     def piirrä(self):
         if self.ole and self.counter < 10:
+            self.var += self.vel2
             self.counter += self.vel
             if self.counter >= 0 and self.counter < 1:
                 bossfight.blit(blaster[0],(self.x,self.y))
             if self.counter >= 1 and self.counter < 2:
                 bossfight.blit(blaster[1],(self.x,self.y))
             if self.counter >= 2 and self.counter < 10:
-                self.rect = pygame.Rect(self.x+17, self.y+20, 10, 1000)
+                self.rect = pygame.Rect(self.x+17, self.y+20, 10, self.var)
                 pygame.draw.rect(bossfight, (255, 255, 255), (self.rect))
                 bossfight.blit(blaster[2],(self.x,self.y))
                 self.x += self.vel1
             if self.counter >= 7:
+                self.var = 1
                 self.ole = False
 
 def uusblaster():
@@ -371,7 +376,7 @@ tiktok =  timer(1)
 tiktok1 =  timer(4)
 tiktok2 =  timer(0.8)
 tiktok3 =  timer(0.6)
-gasteri = uusblaster()
+
 run = False
 
 state = True
@@ -397,7 +402,7 @@ while state:
     if seconds < 3:
         sound2.play()
     pygame.display.update()
-    kello.tick(60)
+    kello.tick(100)
     leveys += velo
     leveys1 += velo
     if leveys >= 403:
@@ -431,7 +436,6 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
-
     if not state and yks:
         attack1()
         if not veitsi.olemassa:
@@ -532,15 +536,15 @@ while run:
         time.sleep(4)
         run = False
 
-    if not gasteri.ole and tiktok3.going:
-        gasteri = uusblaster()
-
 
     if not kivi.olemassa and tiktok.going:
         kivi = uusrock()
 
     if not kivi1.olemassa and tiktok2.going:
         kivi1= uusrock2()
+
+    if not gasteri.ole and tiktok3.going:
+        gasteri = uusblaster()
 
 
     if veitsi.rect.colliderect(sielu.hitbox):
@@ -550,7 +554,7 @@ while run:
         sound.play()
 
     if gasteri.rect.colliderect(sielu.hitbox):
-        sielu.health -= 200
+        sielu.health -= 50
         print("hit")
         print(sielu.health)
         sound.play()
@@ -564,6 +568,12 @@ while run:
 
     if veitsi2.rect.colliderect(sielu.hitbox):
         sielu.health -= 2
+        print("hit")
+        print(sielu.health)
+        sound.play()
+
+    if veitsi3.rect.colliderect(sielu.hitbox):
+        sielu.health -= 200
         print("hit")
         print(sielu.health)
         sound.play()
