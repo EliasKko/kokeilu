@@ -22,7 +22,7 @@ fontti = pygame.font.SysFont('rage', 100)
 fontti1 = pygame.font.SysFont('kaiti', 40)
 teksti = fontti.render('Lentominipeli', False,(170,20,0))
 teksti1 = fontti1.render('peliä pelataan nuolinäppäimillä, paina ENTER aloittaaksesi', False, (1,0,0))
-pygame.display.set_caption("Fuck Ass Ni99a")
+pygame.display.set_caption("uuuaaaaaghhh")
 kello = pygame.time.Clock()
 peli = pygame.display.set_mode((1000, 500))
 leveys = 0
