@@ -1,5 +1,7 @@
 import mysql.connector
 from flask import Flask
+from flask import Response
+import json
 yhteys = mysql.connector.connect(
             host='127.0.0.1',
             port= 3306,
@@ -22,7 +24,10 @@ def hauki(icao):
             "Name":tulos[0][0],
             "Municipality":tulos[0][1]
         }
-    return str(kenttä)
+    #return str(kenttä)
+
+    jsonvast = json.dumps(kenttä)
+    return Response(response=jsonvast, mimetype="application/json")
 
 if __name__ == '__main__':
     app.run(use_reloader=True, host='127.0.0.1', port=3000)
